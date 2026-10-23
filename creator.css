@@ -22,3 +22,19 @@ h1{font-size:clamp(41px,5.6vw,67px)}h2{font-size:clamp(30px,3.5vw,42px)}h3{font-
 @media(max-width:600px){.guide{grid-template-columns:36px 1fr;padding:14px;gap:12px}.guide-sigil{width:35px;height:35px}.question-block{padding:14px}.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stat-slot{min-height:145px}.dice-bank{grid-template-columns:repeat(4,minmax(0,1fr))}.die{min-height:79px}}
 @media(prefers-reduced-motion:reduce){.dice-rolling .die{animation:none}.die.chosen{transform:none}}
 @media print{.guide{display:none}.question-block{background:white}.brand,h1,h2,h3,.review-hero{color:black}}
+/* Подсказки о навыках и обзор последовательности */
+.guide-faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:20px 0 25px}
+.guide-faq details{border:1px solid #796847;background:#142127;padding:0 15px}
+.guide-faq summary{padding:13px 2px;color:#f0dba9;cursor:pointer;font:19px/1.25 'Monomakh','Cormorant Garamond',Georgia,serif}
+.guide-faq p{margin:0 0 15px;color:#d4ccbb;font-size:14px;line-height:1.55}
+.guide-faq strong{color:#f2d697}.skill-section summary small{margin-left:8px;color:#ac9b79;font:12px Arial,sans-serif}
+.skill-options{display:grid;grid-template-columns:1fr;gap:8px;padding:3px 15px 17px}
+.skill-entry{border:1px solid #695c45;background:#101c21}.skill-entry.is-selected{border-color:#ae9562;background:#1e2b29}
+.skill-entry>summary{display:flex;align-items:center;gap:11px;padding:10px 13px;cursor:pointer;list-style:none;color:#e7d7b8;font:15px/1.3 'PT Serif',Georgia,serif}
+.skill-entry>summary::-webkit-details-marker{display:none}.skill-entry>summary::after{content:'⌄';margin-left:auto;color:#d8c398}.skill-entry[open]>summary::after{content:'⌃'}
+.skill-entry>summary:hover{background:#a98d5222}.skill-entry>summary strong{font-weight:400}.skill-index{color:#b19b70;font:11px Arial,sans-serif}.skill-status{margin-left:auto;color:#d4bc86;font:11px Arial,sans-serif;white-space:nowrap}.skill-entry>summary:has(.skill-status)::after{margin-left:4px}
+.skill-entry-body{padding:3px 15px 14px;border-top:1px solid #66583e}.skill-entry-body p{margin:10px 0;color:#d9d0bd;font-size:14px}.skill-entry-body .skill-roll{color:#c2aa78;font-size:13px}.skill-entry-body .skill-option{margin:7px 0;padding:8px 10px;border:1px solid #6e5e40;background:#1c2a2d}.skill-entry-body a{display:inline-block;margin:4px 0;color:#ead096;font-size:12px}.skill-entry-body small{display:block;color:#bdb4a3;font-size:12px}
+.path-preview .path-overview{color:#e1d2b4;line-height:1.55;margin:13px 0 16px}.ninth-preview{margin:20px 0;padding:19px;border:1px solid #89724a;background:#111e23}.ninth-heading h3{margin:5px 0 8px}.ninth-heading p{margin:0 0 16px;color:#d5cabb;font-size:14px}.ninth-abilities{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:start}
+.ability-detail{border:1px solid #706046;background:#1c292d;min-width:0}.ability-detail summary{display:flex;gap:10px;align-items:center;cursor:pointer;padding:11px 12px;color:#efdcba;font:16px/1.3 'PT Serif',Georgia,serif}.ability-detail summary span{color:#bba173;font:11px Arial,sans-serif}.ability-detail[open]{grid-column:1/-1}.ability-body{max-height:420px;overflow:auto;padding:3px 15px 15px;border-top:1px solid #65583f}.ability-body p{white-space:pre-line;margin:10px 0;color:#dcd3c3;font-size:14px;line-height:1.55}.ability-body a{color:#edcf93;font-size:13px}
+@media(max-width:680px){.guide-faq,.ninth-abilities{grid-template-columns:1fr}.ability-detail[open]{grid-column:auto}.skill-options{padding:3px 8px 12px}.skill-status{white-space:normal}}
+@media print{.guide-faq,.skill-section,.ninth-preview{display:none}}
