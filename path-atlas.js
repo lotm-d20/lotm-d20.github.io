@@ -1,6 +1,6 @@
 function renderPathAtlas(){
   const escape = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-  const sequenceName = sequence => sequence.title.replace(/^Последовательность\s+\d+[.:]?\s*/, '');
+  const sequenceName = sequence => sequence.title.replace(/^Последовательность\s+\d+[.:]?\s*/, '').split(/\s+—\s+|\.\s+/)[0];
   const levels = Array.from({length:10}, (_, index) => 9 - index);
   return `<details class="path-atlas" open>
     <summary class="path-atlas-heading">
