@@ -1,20 +1,25 @@
 function renderPathAtlas(){
   const escape = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const sequenceName = sequence => sequence.title.replace(/^Последовательность\s+\d+[.:]?\s*/, '');
+  const levels = Array.from({length:10}, (_, index) => 9 - index);
   return `<details class="path-atlas" open>
     <summary class="path-atlas-heading">
       <span class="path-atlas-seal" aria-hidden="true">✧</span>
-      <span><small>АТЛАС ПОТУСТОРОННЕГО</small><strong>Все пути одним взглядом</strong><em>От последовательности 9 до последовательности 0</em></span>
+      <span><small>АТЛАС ПОТУСТОРОННЕГО</small><strong>Пути и последовательности</strong><em>Все названия от 9-й ступени до 0-й</em></span>
       <span class="path-atlas-count">22 ПУТИ</span>
     </summary>
     <div class="path-atlas-body">
-      <p>Начальная и высшая последовательности каждого пути. Нажмите на строку, чтобы открыть все его ступени и способности.</p>
-      <div class="path-atlas-grid">${BOOK.paths.map((path, index) => `<a class="path-atlas-entry" data-atlas-path="${escape(path.slug)}" href="#path/${escape(path.slug)}">
-        <span class="path-atlas-number">${String(index + 1).padStart(2, '0')}</span>
-        <img src="assets/${escape(path.asset)}.jpg" alt="" loading="lazy">
-        <span class="path-atlas-copy"><strong>${escape(path.title)}</strong><small><b>9</b> ${escape(sequenceName(path.sequences[0]))}<i aria-hidden="true">→</i><b>0</b> ${escape(sequenceName(path.sequences[path.sequences.length - 1]))}</small></span>
-        <span class="path-atlas-arrow" aria-hidden="true">↗</span>
-      </a>`).join('')}</div>
+      <p>Каждая строка — путь, каждый столбец — последовательность. Нажмите на название, чтобы открыть её описание.</p>
+      <div class="path-atlas-scroll" role="region" aria-label="Таблица путей и последовательностей" tabindex="0">
+        <table class="path-atlas-table">
+          <thead><tr><th scope="col">Путь</th>${levels.map(level => `<th scope="col"><span>Последовательность</span><strong>${level}</strong></th>`).join('')}</tr></thead>
+          <tbody>${BOOK.paths.map(path => `<tr data-atlas-path="${escape(path.slug)}">
+            <th scope="row"><a href="#path/${escape(path.slug)}"><img src="assets/${escape(path.asset)}.jpg" alt="" loading="lazy"><span>${escape(path.title)}</span></a></th>
+            ${levels.map(level => {const sequence=path.sequences.find(item => item.level===level);return `<td>${sequence ? `<a href="#path/${escape(path.slug)}/${escape(sequence.id)}"><small>${level}</small>${escape(sequenceName(sequence))}</a>` : '—'}</td>`;}).join('')}
+          </tr>`).join('')}</tbody>
+        </table>
+      </div>
+      <p class="path-atlas-hint">Листайте таблицу в сторону, чтобы увидеть все последовательности.</p>
     </div>
   </details>`;
 }
